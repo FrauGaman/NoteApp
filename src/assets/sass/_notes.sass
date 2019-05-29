@@ -1,0 +1,84 @@
+.notes-header
+	display: flex
+	justify-content: space-between
+	align-items: center
+	margin: 36px 0
+	font-size: 22px
+	svg
+		margin-right: 12px
+		color: #999
+		cursor: pointer
+		&.active 
+			color: #402caf
+		&:last-child
+			margin-right: 0
+
+.notes
+	display: flex
+	justify-content: space-between
+	flex-wrap: wrap
+	.note
+		width: 48%
+		padding: 18px 20px
+		margin-bottom: 20px
+		background-color: #fff
+		border: 1px solid #C1C1C1
+		border-radius: 5px
+		transition: all .25s cubic-bezier(.02, .01, .47, 1)
+		box-shadow: 0 30px 30px rgba(0, 0, 0, .02)
+		&:hover
+			box-shadow: 0 30px 30px rgba(0, 0, 0, .04)
+			transform: translate(0, -6px)
+			transition-delay: 0s !important
+		&.full
+			width: 100%
+			text-align: center
+		&.importantNote
+			border: 2px solid orange
+			box-shadow: 0px 0px 17px -5px orange
+		&.veryImportantNote
+			border: 2px solid red
+			box-shadow: 0px 0px 17px -5px red
+.note-header
+	position: relative
+	display: flex
+	justify-content: space-between
+	align-items: center
+	font-size: 20px
+	color: #402caf
+	input
+		position: absolute
+		display: none
+		font-size: 20px
+		margin-top: -10px
+		color: #402caf
+		border: none
+		outline: none
+		&.showInput
+			display: block
+	p
+		margin-top: 0
+		&:last-child
+			cursor: pointer
+	&.full
+		justify-content: center
+		p
+			margin-right: 10px
+			&:last-child
+				margin-right: 0
+		
+.note-body
+	position: relative
+	font-size: 16px
+	span
+		font-size: 14px
+	input
+		position: absolute
+		display: none
+		font-size: 16px
+		margin-top: -36px
+		border: none
+		outline: none
+		&.showBodyInput
+			display: block
+	
