@@ -1,6 +1,6 @@
 <template>
   <div class="notes">
-    <div class="note" v-for="(note, index) in notes" :key="index" :class="{ full: !grid }">
+    <div class="note" v-for="(note, index) in notes" :key="index" :class="{ full: !grid, importantNote: note.priority == 'Important', veryImportantNote: note.priority == 'Very Important' }" >
       <div class="note-header" :class="{ full: !grid }">
         <p>{{ note.title }}</p>
         <p class="close" @click="removeNote(index)">x</p>
