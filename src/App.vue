@@ -7,7 +7,11 @@
 
           <message v-if="message" :message="message" />
 
-          <newNote :note="note" :priorities="priorities" @addNote="addNote" @addPriority="addPriority"/>
+          <newNote 
+            :note="note" 
+            :priorities="priorities" 
+            @addNote="addNote" 
+            @addPriority="addPriority"/>
           
           <div class="notes-header">
             <h1>{{ title }}</h1>
@@ -25,7 +29,10 @@
           <notes 
             :notes="notesFilter"
             :grid="grid"
-            @remove="removeNote"/>
+            :editing="editing"
+            @remove="removeNote"
+            @saveTitleChanges="saveTitleChanges"
+            @saveBodyChanges="saveBodyChanges" />
 
         </div>
       </section>
@@ -52,10 +59,26 @@
         search: '',
         message: null,
         grid: true,
+        editing: {
+          title: false,
+          descr: false,
+          oldTitle: [],
+          oldDescr: []
+        },
+
         priorities: [
-          {name: 'Standart'},
-          {name: 'Important'},
-          {name: 'Very Important'}
+          {
+            name: 'Standart',
+            check: true
+          },
+          {
+            name: 'Important',
+            check: false
+          },
+          {
+            name: 'Very Important',
+            check: false
+          }
         ],
         note: {
           title: '',
@@ -128,10 +151,31 @@
         this.note.priority = 'Standart'
 
         this.message = null
+
+        document.querySelector('input[type="radio"]').checked = true
+
       },
       removeNote(index) {
         this.notes.splice(index, 1)
         console.log(index)
+      },
+      saveTitleChanges() {
+        for (let i = 0; i < this.notes.length; i++) {
+          if (this.editing.oldTitle[i] != this.notes[i].title) {
+            this.notes[i].date = `edited in ${new Date(Date.now()).toLocaleString()}`
+          }
+        }
+        this.editing.oldTitle = []
+        this.editing.title = false
+      },
+      saveBodyChanges() {
+        for (let i = 0; i < this.notes.length; i++) {
+          if (this.editing.oldDescr[i] != this.notes[i].descr) {
+            this.notes[i].date = `edited in ${new Date(Date.now()).toLocaleString()}`
+          }
+        }
+        this.editing.oldDescr = []
+        this.editing.descr = false
       }
     }
   }
