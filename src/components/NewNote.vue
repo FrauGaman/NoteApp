@@ -4,9 +4,15 @@
 		<div class="importance">
 			<div class="importance_header">Importance</div>
 
-			<label class="importance_item" :class="status.name" v-for="(status, index) in priorities" :key="index"> {{ status.name }}<input type="radio" name="radio" :checked='status.check' @click="addPriority(index)">
+			<label 
+				class="importance_item" 
+				:class="status.name" 
+				v-for="(status, index) in priorities" 
+				:key="index"> 
+					{{ status.name }}
+					<input type="radio" name="radio" :checked='status.check' @click="addPriority(index)">
 
-				</label>
+			</label>
 
 
 		</div>
